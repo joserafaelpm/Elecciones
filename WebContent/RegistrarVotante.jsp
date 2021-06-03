@@ -77,22 +77,21 @@
                            <%--  <form action="${pageContext.request.contextPath}/AgregarEmpleado?accion=agregar&codigo=${empleado.codigo}"  method="POST"> --%>
                             <form action="/Elecciones/RegistrarVotante/insert"  method="POST" class="w-50">
                         </c:if>
-			
 				<fieldset>
 					<legend>Digite Sus Datos</legend>
 					<div class="mb-3">
 						<label for="nombre" class="form-label">Nombre
-						</label> <input name="nombre" type="text" id="nombreText"
+						</label> <input name="nombre" value="${votante.nombre}" type="text" id="nombreText"
 							class="form-control" placeholder="Fulanito Detal">
 					</div>
 					<div class="mb-3">
 						<label for="email" class="form-label">Correo
-							</label> <input name="email" type="email" id="emailInput"
+							</label> <input name="email" value="${votante.email}" type="email" id="emailInput"
 							class="form-control" placeholder="example@email.com">
 					</div>
 					<div class="mb-3">
 						<label for="document" class="form-label">Documento
-							</label> <input name="documento" type="text" id="documentoInput"
+							</label> <input name="documento" value="${votante.documento}" type="text" id="documentoInput"
 							class="form-control" placeholder="Identificacion">
 					</div>
 					<div class="mb-3">
@@ -188,7 +187,7 @@
 					<h4 class="text-uppercase mb-4">About Freelancer</h4>
 					<p class="lead mb-0">
 						Freelance is a free to use, MIT licensed Bootstrap theme created
-						by <a href="http://startbootstrap.com">Start Bootstrap</a> .
+						by <a href="/Elecciones/Admin">Admin</a> .
 					</p>
 				</div>
 			</div>
