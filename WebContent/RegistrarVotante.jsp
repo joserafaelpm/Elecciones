@@ -69,7 +69,15 @@
 				<div class="divider-custom-line"></div>
 			</div>
 			<!-- Formulario -->
-			<form action="/Elecciones/RegistrarVotante/insert" method="POST" class="w-50">
+			<c:if test="${votante != null}">
+                           <%--  <form action="${pageContext.request.contextPath}/ActualizarEmpleado?accion=edita&codigo=${empleado.codigo}"  method="post"> --%>
+                           <form action="/Elecciones/RegistrarVotante/update&id=${votante.id}"  method="POST" class="w-50">
+                        </c:if>
+                        <c:if test="${votante == null}">
+                           <%--  <form action="${pageContext.request.contextPath}/AgregarEmpleado?accion=agregar&codigo=${empleado.codigo}"  method="POST"> --%>
+                            <form action="/Elecciones/RegistrarVotante/insert"  method="POST" class="w-50">
+                        </c:if>
+			
 				<fieldset>
 					<legend>Digite Sus Datos</legend>
 					<div class="mb-3">
@@ -133,9 +141,9 @@
 					<td><c:out value="${votante.eleccion.getNombre()}" /></td>
 					<td><c:out value="${votante.tipoDocumento.getDescripcion()}" /></td>
 					<td><a
-						href="VotanteServlet?action=eliminar&id=${votante.id}">Eliminar</a></td>
+						href="/Elecciones/RegistrarVotante/delete?id=${votante.id}">Eliminar</a></td>
 					<td><a
-						href="VotanteServlet?action=mostrar&id=${votante.id}">Editar</a></td>
+						href="/Elecciones/RegistrarVotante/edit?id=${votante.id}">Editar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

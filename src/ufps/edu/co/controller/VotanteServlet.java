@@ -109,7 +109,7 @@ public class VotanteServlet extends HttpServlet {
 		Votante vt = new Votante();
 		vt.setId(id);
 		Votante vtaux = votanteDao.find(vt.getId());
-		request.getSession().setAttribute("tipodocumento", vtaux);
+		request.getSession().setAttribute("votante", vtaux);
 		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
 	}
 
@@ -123,7 +123,7 @@ public class VotanteServlet extends HttpServlet {
 		Eleccion eleccion = eleccionesDao.find(Integer.parseInt(request.getParameter("eleccion")));
 		Votante v = new Votante(id,nombre,correo,documento,tipo,eleccion);
 		votanteDao.update(v);
-		request.getRequestDispatcher("ListarVotante.jsp").forward(request, response);
+		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
 	}
 
 	private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -133,7 +133,7 @@ public class VotanteServlet extends HttpServlet {
 		Votante vtaux = votanteDao.find(id);
 		vt.setId(id);
 		votanteDao.delete(vtaux);
-		request.getRequestDispatcher("ListarVotante.jsp").forward(request, response);
+		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -142,7 +142,7 @@ public class VotanteServlet extends HttpServlet {
 		Votante vt = new Votante();
 		vt.setId(id);
 		Votante vtaux = votanteDao.find(vt.getId());
-		request.getSession().setAttribute("tipodocumento", vtaux);
+		request.getSession().setAttribute("votante", vtaux);
 		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
 	}
 

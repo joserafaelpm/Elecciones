@@ -11,7 +11,6 @@ import ufps.edu.co.dao.EleccionesDao;
 import ufps.edu.co.dao.EstamentoDao;
 import ufps.edu.co.model.Eleccion;
 import ufps.edu.co.model.Estamento;
-import ufps.edu.co.model.TipoDocumento;
 
 /**
  * Servlet implementation class EstamentoServlet
