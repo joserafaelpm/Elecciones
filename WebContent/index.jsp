@@ -44,11 +44,9 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="${pageContext.request.contextPath}/Elecciones.jsp">Elecciones</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded" href="#Elecciones">Elecciones</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="/Elecciones/RegistrarVotante">Registro</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Acceder</a></li>
 				</ul>
 			</div>
 		</div>
@@ -76,7 +74,7 @@ src="<c:url value ="/img/UFPS_Logo.png"/>" alt="..." />
 		</div>
 	</header>
 	
-	<section class="page-section portfolio" id="portfolio">
+	<section class="page-section portfolio" id="Elecciones">
 		<div class="container">
 			<!-- Portfolio Section Heading-->
 			<h2
