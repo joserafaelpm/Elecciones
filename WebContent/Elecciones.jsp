@@ -35,7 +35,7 @@
 		<div class="container">
 			<a class="navbar-brand" href="#page-top">Elecciones Estudiantiles</a>
 			<button
-				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+				class="navbar-toggler text-uppercase font-weight-bold bg-white text-black rounded"
 				type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -52,16 +52,11 @@
 			</div>
 		</div>
 	</nav>
-
-
-
-
-
 	<section class="page-section portfolio" id="portfolio mt-5">
 		<div class="container">
 			<!-- Portfolio Section Heading-->
 			<h2
-				class="page-section-heading mt-5 pt-5 text-center text-uppercase text-secondary mb-0">Elecciones</h2>
+				class="page-section-heading mt-5 pt-5 text-center text-uppercase text-Dark mb-0">Elecciones</h2>
 			<!-- Icon Divider-->
 			<div class="divider-custom">
 				<div class="divider-custom-line"></div>
@@ -70,8 +65,8 @@
 				</div>
 				<div class="divider-custom-line"></div>
 			</div>
-			<div class="row row-cols-2 justify-content-center">
-				<!-- Portfolio Item 1-->
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 justify-content-center">
+				<!-- Portfolio Item 1--> 
 				<c:forEach var="eleccion" items="${elecciones}">
 					<div class="col mb-5 text-center">
 						<h3>${eleccion.nombre}</h3>
@@ -81,14 +76,16 @@
 								class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 								<div
 									class="portfolio-item-caption-content text-center text-white">
-									<i class="fas fa-plus fa-3x"></i>
+									<i class="fas fa-search fa-3x"></i>
 								</div>
 							</div>
 							<img class="img-fluid"
 								src="<c:url value ="/img/Elecciones.jpg"/>" alt="..." />
 						</div>
-						<a class="btn btn-danger" href="/Elecciones/Admin/eliminarEleccion?id=${eleccion.id}" role="button">Eliminiar Eleccion</a>
-						<a class="btn btn-info" href="/Elecciones/Admin/eliminarEleccion?id=${eleccion.id}" role="button">Editar Eleccion</a>
+						<div class="row mx-3">
+							<a class="btn btn-danger rounded-0 col w-100" href="/Elecciones/Admin/eliminarEleccion?id=${eleccion.id}" role="button">Eliminiar Eleccion</a>
+							<a class="btn btn-info rounded-0 col w-100" href="/Elecciones/Admin/eliminarEleccion?id=${eleccion.id}" role="button">Editar Eleccion</a>
+						</div>	
 					</div>
 				</c:forEach>
 			<div class="col mb-5 text-center">
@@ -108,6 +105,29 @@
 		</div>
 		</div>
 	</section>
+	
+	<section class="page-section bg-dark text-white mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Configuracion</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-cog"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    
+			<a href="${pageContext.request.contextPath}/TipodocumentoLista.jsp" class="btn btn-xl btn-outline-light">Tipos De Documentos</a>
+			<a href="${pageContext.request.contextPath}/RegistrarEstamento.jsp" class="btn btn-xl btn-outline-light">Estamento</a> </div>
+                <!-- About Section Button-->
+                <div class="text-center mt-4">
+                </div>
+            </div>
+        </section>
+	
+	
 	<!-- Footer-->
 	<footer class="footer text-center">
 		<div class="container">
@@ -210,7 +230,9 @@
 		</div>
 	</div>
 
+
 	<c:forEach var="eleccion" items="${elecciones}">
+		
 		<div class="portfolio-modal modal fade"
 			id="portfolioModal${eleccion.id}" tabindex="-1"
 			aria-labelledby="portfolioModal${eleccion.id}" aria-hidden="true">
@@ -227,6 +249,9 @@
 									<!-- Portfolio Modal - Title-->
 									<h2
 										class="portfolio-modal-title text-secondary text-uppercase mb-0">Candidatos</h2>
+										
+										<a href="Admin/lista?id=${eleccion.id}">Votantes Inscritos</a>
+										
 									<!-- Icon Divider-->
 									<div class="divider-custom">
 										<div class="divider-custom-line"></div>
@@ -309,6 +334,7 @@
 											</div>
 										</div>
 									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -319,11 +345,11 @@
 		</div>
 		
 	</c:forEach>
+	
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
-</body>
 </body>
 </html>

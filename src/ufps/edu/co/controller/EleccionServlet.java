@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import ufps.edu.co.dao.CandidatoDao;
 import ufps.edu.co.dao.EleccionesDao;
+import ufps.edu.co.dao.VotanteDao;
 import ufps.edu.co.model.Candidato;
 import ufps.edu.co.model.Eleccion;
+import ufps.edu.co.model.Votante;
 
 /**
  * Servlet implementation class ControllerCandidato
@@ -25,7 +27,7 @@ public class EleccionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	EleccionesDao elecciones;
 	CandidatoDao candidatos;
-	
+	VotanteDao votantes;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,6 +42,7 @@ public class EleccionServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		elecciones = new EleccionesDao();
 		candidatos = new CandidatoDao();
+		votantes = new VotanteDao();
 	}
 
 	/**
@@ -53,6 +56,9 @@ public class EleccionServlet extends HttpServlet {
 		}		
 		try {
 			switch (action) {
+			case "lista":
+				ListarUsuario(request, response);
+				break;
 			case "eliminarEleccion":
 				//showNewForm(request, response);
 				break;
@@ -78,6 +84,17 @@ public class EleccionServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void ListarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Votante> votantes = this.votantes.list();
+		Eleccion eleccion = elecciones.find(Integer.parseInt(request.getParameter("id"))); 
+		
+		request.setAttribute("eleccion", eleccion);
+		request.setAttribute("votantes", votantes);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarVotante.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void insertarCandidato(HttpServletRequest request, HttpServletResponse response) throws IOException {

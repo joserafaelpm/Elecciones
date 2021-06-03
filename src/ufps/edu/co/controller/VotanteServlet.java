@@ -71,7 +71,6 @@ public class VotanteServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -81,6 +80,7 @@ public class VotanteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
 	private void insertarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String nombre = request.getParameter("nombre");
 		String correo = request.getParameter("email");

@@ -35,7 +35,7 @@
 		<div class="container">
 			<a class="navbar-brand" href="#page-top">Elecciones Estudiantiles</a>
 			<button
-				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+				class="navbar-toggler text-uppercase font-weight-bold bg-white text-black rounded"
 				type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -87,11 +87,9 @@ src="<c:url value ="/img/UFPS_Logo.png"/>" alt="..." />
 				</div>
 				<div class="divider-custom-line"></div>
 			</div>
-			<a href="${pageContext.request.contextPath}/TipodocumentoRegistro.jsp" class="btn btn-primary">Registrar Tipo de documento</a>
-			<a href="${pageContext.request.contextPath}/TipodocumentoLista.jsp" class="btn btn-primary">Lista de Tipos de documento</a>
-			<a href="${pageContext.request.contextPath}/RegistrarEstamento.jsp" class="btn btn-primary">Registrar Estamento</a>
+			
 			<!-- Portfolio Grid Items-->
-			<div class="row row-cols-2 justify-content-center">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 justify-content-center">
 				<!-- Portfolio Item 1-->
 				<c:forEach var="eleccion" items="${elecciones}">
 				<div class="col mb-5">	

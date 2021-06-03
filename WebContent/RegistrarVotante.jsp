@@ -32,12 +32,13 @@
 <jsp:useBean class="ufps.edu.co.dao.VotanteDao" id="votanteDAO"></jsp:useBean>
 <jsp:useBean class="ufps.edu.co.dao.EleccionesDao" id="eleccionDAO"></jsp:useBean>
 <jsp:useBean class="ufps.edu.co.dao.TipoDocumentoDao" id="tipoDAO"></jsp:useBean>
+
 	<nav class="navbar navbar-expand-lg bg-danger text-uppercase fixed-top"
 		id="mainNav">
 		<div class="container">
 			<a class="navbar-brand" href="#page-top">Elecciones Estudiantiles</a>
 			<button
-				class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+				class="navbar-toggler text-uppercase font-weight-bold bg-white text-black rounded"
 				type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -46,8 +47,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded"
-						href="/Elecciones/Index">Index</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded" href="/Elecciones/Index">Index</a></li>
 				</ul>
 			</div>
 		</div>
@@ -112,40 +112,6 @@
 				</fieldset>
 			</form>
 
-<!--Esta parte esta la tabla  -->
-
-	<h1>
-		<b>Votantes Registrados</b>
-	</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">Id</th>
-				<th scope="col">Documento</th>
-				<th scope="col">Email</th>
-				<th scope="col">Nombre</th>
-				<th scope="col">Eleccion</th>
-				<th scope="col">Tipo de documento</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${votanteDAO.list()}" var="votante">
-				<tr>
-					<th scope="row"><c:out value="${votante.id}" /></th>
-					<td><c:out value="${votante.documento}" /></td>
-					<td><c:out value="${votante.email}" /></td>
-					<td><c:out value="${votante.nombre}" /></td>
-					<td><c:out value="${votante.eleccion.getNombre()}" /></td>
-					<td><c:out value="${votante.tipoDocumento.getDescripcion()}" /></td>
-					<td><a
-						href="/Elecciones/RegistrarVotante/delete?id=${votante.id}">Eliminar</a></td>
-					<td><a
-						href="/Elecciones/RegistrarVotante/edit?id=${votante.id}">Editar</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
 
 
 			<!-- Masthead Subheading-->
@@ -197,5 +163,10 @@
 			<small>Copyright &copy; Your Website 2021</small>
 		</div>
 	</div>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
 </body>
 </html>
