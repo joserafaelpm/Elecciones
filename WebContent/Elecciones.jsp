@@ -84,7 +84,7 @@
 						</div>
 						<div class="row mx-3">
 							<a class="btn btn-danger rounded-0 col w-100" href="/Elecciones/Admin/eliminarEleccion?id=${eleccion.id}" role="button">Eliminiar Eleccion</a>
-							<a class="btn btn-info rounded-0 col w-100" href="/Elecciones/Admin/eliminarEleccion?id=${eleccion.id}" role="button">Editar Eleccion</a>
+							<a class="btn btn-info rounded-0 col w-100" href="/Elecciones/Admin/editarEleccion?id=${eleccion.id}" role="button">Editar Eleccion</a>
 						</div>	
 					</div>
 				</c:forEach>
@@ -119,7 +119,7 @@
                 <!-- About Section Content-->
                 <div class="row">
                     
-			<a href="${pageContext.request.contextPath}/TipodocumentoLista.jsp" class="btn btn-xl btn-outline-light">Tipos De Documentos</a>
+			<a href="${pageContext.request.contextPath}/Tipodocumento.jsp" class="btn btn-xl btn-outline-light">Tipos De Documentos</a>
 			<a href="${pageContext.request.contextPath}/RegistrarEstamento.jsp" class="btn btn-xl btn-outline-light">Estamento</a> </div>
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
@@ -278,7 +278,7 @@
 													<img class="img-fluid"
 														src="<c:url value ="/img/Elecciones.jpg"/>" alt="..." />
 														<a class="btn btn-danger" href="/Elecciones/Admin/eliminarCandidato?id=${candidato.id}" role="button">Eliminiar Candidato</a>
-														<a class="btn btn-info" href="/Elecciones/Admin/eliminarCandidato?id=${candidato.id}" role="button">Editar Candidato</a>
+														<a class="btn btn-info" href="/Elecciones/Admin/editarCandidato?id=${candidato.id}" role="button">Editar Candidato</a>
 												</div>
 											</div>
 											</c:if>

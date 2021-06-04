@@ -72,10 +72,10 @@ public class EleccionServlet extends HttpServlet {
 				insertarCandidato(request, response);
 				break;
 			case "eliminarCandidato":
-				//eliminarUsuario(request, response);
+				eliminarCandidato(request, response);
 				break;
 			case "editarCandidato":
-				//showEditForm(request, response);
+				editarCandidato(request, response);
 				break;
 			default:
 				Elecciones(request, response);
@@ -86,6 +86,18 @@ public class EleccionServlet extends HttpServlet {
 		}
 	}
 	
+	private void editarCandidato(HttpServletRequest request, HttpServletResponse response) {
+		
+	}
+
+	private void eliminarCandidato(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		candidatos.delete(candidatos.find(id));
+		
+		response.sendRedirect("../Admin");
+	}
+
 	private void ListarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Votante> votantes = this.votantes.list();
 		Eleccion eleccion = elecciones.find(Integer.parseInt(request.getParameter("id"))); 

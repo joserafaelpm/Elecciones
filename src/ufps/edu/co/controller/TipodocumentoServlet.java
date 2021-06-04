@@ -77,7 +77,7 @@ public class TipodocumentoServlet extends HttpServlet {
 		tp.setId(id);
 		TipoDocumento tpaux = new TipoDocumento();
 		request.getSession().setAttribute("tipodocumento", tpaux);
-		request.getRequestDispatcher("TipodocumentoRegistro.jsp").forward(request, response);
+		request.getRequestDispatcher("Tipodocumento.jsp").forward(request, response);
 	}
 	
 	protected void  registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -86,7 +86,7 @@ public class TipodocumentoServlet extends HttpServlet {
 		TipoDocumento tpdt = new TipoDocumento();
 		tpdt.setDescripcion(descripcion);
 		tpdtDao.insert(tpdt);
-		request.getRequestDispatcher("TipodocumentoRegistro.jsp").forward(request, response);
+		request.getRequestDispatcher("Tipodocumento.jsp").forward(request, response);
 	}
 
 	private void actualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -97,7 +97,7 @@ public class TipodocumentoServlet extends HttpServlet {
 		tp.setId(id);
 		tp.setDescripcion(descripcion);
 		tpdtDao.update(tp);
-		request.getRequestDispatcher("TipodocumentoLista.jsp").forward(request, response);
+		request.getRequestDispatcher("Tipodocumento.jsp").forward(request, response);
 	}
 
 
@@ -109,7 +109,7 @@ public class TipodocumentoServlet extends HttpServlet {
 		tp.setId(id);
 		TipoDocumento tpaux = tpdtDao.find(tp.getId());
 		request.getSession().setAttribute("tipodocumento", tpaux);
-		request.getRequestDispatcher("TipodocumentoRegistro.jsp").forward(request, response);
+		request.getRequestDispatcher("Tipodocumento.jsp").forward(request, response);
 	}
 
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -119,7 +119,7 @@ public class TipodocumentoServlet extends HttpServlet {
 		TipoDocumento tpaux = tpdtDao.find(id);
 		tp.setId(id);
 		tpdtDao.delete(tpaux);
-		request.getRequestDispatcher("TipodocumentoLista.jsp").forward(request, response);
+		request.getRequestDispatcher("Tipodocumento.jsp").forward(request, response);
 		
 	}
 

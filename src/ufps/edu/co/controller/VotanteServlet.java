@@ -65,7 +65,7 @@ public class VotanteServlet extends HttpServlet {
 				editarUsuario(request, response);
 				break;
 			default:
-				//RegistarVotante(request, response);
+				RegistarVotante(request, response);
 				break;
 			}
 		} catch (Exception e) {
