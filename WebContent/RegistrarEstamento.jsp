@@ -66,7 +66,6 @@
 		</div>
 	</nav>	
 	
-	
 <div class="container pt-3">
 	<h1 class="mt-5 pt-5">
 		<b>Registrar Estamento</b>
