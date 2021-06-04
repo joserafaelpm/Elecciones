@@ -29,9 +29,9 @@
 <link rel="stylesheet" href="<c:url value ="/CSS/Estilos.css"/>" />
 </head>
 <body>
-<jsp:useBean class="ufps.edu.co.dao.VotanteDao" id="votanteDAO"></jsp:useBean>
-<jsp:useBean class="ufps.edu.co.dao.EleccionesDao" id="eleccionDAO"></jsp:useBean>
-<jsp:useBean class="ufps.edu.co.dao.TipoDocumentoDao" id="tipoDAO"></jsp:useBean>
+	<jsp:useBean class="ufps.edu.co.dao.VotanteDao" id="votanteDAO"></jsp:useBean>
+	<jsp:useBean class="ufps.edu.co.dao.EleccionesDao" id="eleccionDAO"></jsp:useBean>
+	<jsp:useBean class="ufps.edu.co.dao.TipoDocumentoDao" id="tipoDAO"></jsp:useBean>
 
 	<nav class="navbar navbar-expand-lg bg-danger text-uppercase fixed-top"
 		id="mainNav">
@@ -47,7 +47,8 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="/Elecciones/Index">Index</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded"
+						href="/Elecciones/Index">Index</a></li>
 				</ul>
 			</div>
 		</div>
@@ -67,47 +68,46 @@
 				<div class="divider-custom-line"></div>
 			</div>
 			<!-- Formulario -->
-                            <form action="/Elecciones/RegistrarVotante/insert"  method="POST" class="w-50">
+			<form action="/Elecciones/RegistrarVotante/update?id=${votante.id}"
+				method="POST" class="w-50">
 				<fieldset>
 					<legend>Digite Sus Datos</legend>
 					<div class="mb-3">
-						<label for="nombre" class="form-label">Nombre
-						</label> <input name="nombre" value="${votante.nombre}" type="text" id="nombreText"
-							class="form-control" placeholder="Fulanito Detal">
+						<label for="nombre" class="form-label">Nombre </label> <input
+							name="nombre" value="${votante.nombre}" type="text"
+							id="nombreText" class="form-control" placeholder="Fulanito Detal">
 					</div>
 					<div class="mb-3">
-						<label for="email" class="form-label">Correo
-							</label> <input name="email" value="${votante.email}" type="email" id="emailInput"
-							class="form-control" placeholder="example@email.com">
+						<label for="email" class="form-label">Correo </label> <input
+							name="email" value="${votante.email}" type="email"
+							id="emailInput" class="form-control"
+							placeholder="example@email.com">
 					</div>
 					<div class="mb-3">
-						<label for="document" class="form-label">Documento
-							</label> <input name="documento" value="${votante.documento}" type="text" id="documentoInput"
-							class="form-control" placeholder="Identificacion">
+						<label for="document" class="form-label">Documento </label> <input
+							name="documento" value="${votante.documento}" type="text"
+							id="documentoInput" class="form-control"
+							placeholder="Identificacion">
 					</div>
 					<div class="mb-3">
-						<label for="tipoDocumento" class="form-label">Tipo De Documento
-							</label> <select id="tipoDocumento" name="Tipodocumento" class="form-select">
+						<label for="tipoDocumento" class="form-label">Tipo De
+							Documento </label> <select id="tipoDocumento" name="Tipodocumento"
+							class="form-select">
 							<c:forEach var="documento" items="${tipoDocumento}">
 								<option value="${documento.id}">${documento.descripcion}</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="mb-3">
-						<label for="eleccion" class="form-label">Eleccion
-							</label> <select id="eleccion" name="eleccion" class="form-select">
+						<label for="eleccion" class="form-label">Eleccion </label> <select
+							id="eleccion" name="eleccion" class="form-select">
 							<c:forEach var="eleccion" items="${elecciones}">
 								<option value="${eleccion.id}">${eleccion.nombre}</option>
 							</c:forEach>
 						</select>
 					</div>
 					<button type="submit" class="btn btn-primary mb-5">
-					<c:if test="${votante.id != null}">
 					Actualizar
-					</c:if>
-					<c:if test="${votante.id == null}">
-					Registrarse
-					</c:if>
 					</button>
 				</fieldset>
 			</form>

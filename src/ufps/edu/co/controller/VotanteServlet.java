@@ -65,7 +65,7 @@ public class VotanteServlet extends HttpServlet {
 				editarUsuario(request, response);
 				break;
 			default:
-				RegistarVotante(request, response);
+				//RegistarVotante(request, response);
 				break;
 			}
 		} catch (Exception e) {
@@ -89,7 +89,7 @@ public class VotanteServlet extends HttpServlet {
 		Eleccion eleccion = eleccionesDao.find(Integer.parseInt(request.getParameter("eleccion")));
 		Votante v = new Votante(nombre,correo,documento,tipo,eleccion);
 		votanteDao.insert(v);
-		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
+		response.sendRedirect("../Index");
 	}
 
 	private void RegistarVotante(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -105,12 +105,19 @@ public class VotanteServlet extends HttpServlet {
 
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		List<Eleccion> elecciones = this.eleccionesDao.list();
+		List<TipoDocumento> tipoDocumento = this.tipoDocumentoDao.list();
+		
+		request.setAttribute("elecciones", elecciones);
+		request.setAttribute("tipoDocumento", tipoDocumento);
+		
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Votante vt = new Votante();
 		vt.setId(id);
 		Votante vtaux = votanteDao.find(vt.getId());
 		request.getSession().setAttribute("votante", vtaux);
-		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/ActualizarVotante.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void editarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -123,27 +130,20 @@ public class VotanteServlet extends HttpServlet {
 		Eleccion eleccion = eleccionesDao.find(Integer.parseInt(request.getParameter("eleccion")));
 		Votante v = new Votante(id,nombre,correo,documento,tipo,eleccion);
 		votanteDao.update(v);
-		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
+		response.sendRedirect("../Admin/lista?id="+eleccion.getId());
 	}
 
 	private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		Votante vt = new Votante();
 		Votante vtaux = votanteDao.find(id);
-		vt.setId(id);
 		votanteDao.delete(vtaux);
-		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
+		response.sendRedirect("../Admin/lista?id="+vtaux.getEleccion().getId());
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Integer id = Integer.parseInt(request.getParameter("id"));
-		Votante vt = new Votante();
-		vt.setId(id);
-		Votante vtaux = votanteDao.find(vt.getId());
-		request.getSession().setAttribute("votante", vtaux);
-		request.getRequestDispatcher("RegistrarVotante.jsp").forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("RegistrarVotante.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
