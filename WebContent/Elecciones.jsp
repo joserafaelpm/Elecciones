@@ -118,7 +118,7 @@
                 </div>
                 <!-- About Section Content-->
                 <div class="row">
-                    
+            <a href="${pageContext.request.contextPath}/Voto.jsp" class="btn btn-xl btn-outline-light">Tipos De Documentos</a>        
 			<a href="${pageContext.request.contextPath}/Tipodocumento.jsp" class="btn btn-xl btn-outline-light">Tipos De Documentos</a>
 			<a href="${pageContext.request.contextPath}/RegistrarEstamento.jsp" class="btn btn-xl btn-outline-light">Estamento</a> </div>
                 <!-- About Section Button-->
