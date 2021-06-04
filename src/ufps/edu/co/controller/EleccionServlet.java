@@ -2,9 +2,15 @@ package ufps.edu.co.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,10 +66,10 @@ public class EleccionServlet extends HttpServlet {
 				ListarUsuario(request, response);
 				break;
 			case "eliminarEleccion":
-				//showNewForm(request, response);
+				eliminarEleccion(request, response);
 				break;
 			case "editarEleccion":
-				//showNewForm(request, response);
+				editarEleccion(request, response);
 				break;
 			case "insert":
 				insertarEleccion(request, response);
@@ -73,6 +79,9 @@ public class EleccionServlet extends HttpServlet {
 				break;
 			case "eliminarCandidato":
 				eliminarCandidato(request, response);
+				break;
+			case "updateEleccion":
+				updateEleccion(request, response);
 				break;
 			case "editarCandidato":
 				editarCandidato(request, response);
@@ -86,8 +95,47 @@ public class EleccionServlet extends HttpServlet {
 		}
 	}
 	
-	private void editarCandidato(HttpServletRequest request, HttpServletResponse response) {
+	private void updateEleccion(HttpServletRequest request, HttpServletResponse response) {
 		
+		
+		/*String [] fechaInicioS = request.getParameter("fechainicio").split("-");
+		c.set(Integer.parseInt(fechaInicioS[0]),Integer.parseInt(fechaInicioS[1])-1, Integer.parseInt(fechaInicioS[2]));
+		Timestamp fechainicio = new Timestamp(c.getTimeInMillis());
+		String [] fechaFinS = request.getParameter("fechafin").split("-");
+		Calendar x = Calendar.getInstance();
+		x.set(Integer.parseInt(fechaFinS[0]),Integer.parseInt(fechaFinS[1])-1, Integer.parseInt(fechaFinS[2]));
+		String cargo = request.getParameter("cargo");
+		Timestamp fechafin = new Timestamp(x.getTimeInMillis());*/
+		
+		
+	}
+
+	private void editarEleccion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Eleccion eleccion = elecciones.find(Integer.parseInt(request.getParameter("id")));
+		
+		request.setAttribute("eleccion", eleccion);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/editEleccion.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void eliminarEleccion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		
+		elecciones.delete(elecciones.find(id));
+		
+		response.sendRedirect("../Admin");
+	}
+
+	private void editarCandidato(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Eleccion> e = elecciones.list();
+		Candidato candidato = candidatos.find(Integer.parseInt(request.getParameter("id")));
+		
+		request.setAttribute("elecciones", e);
+		request.setAttribute("candidato", candidato);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/editCandidato.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void eliminarCandidato(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -122,13 +170,17 @@ public class EleccionServlet extends HttpServlet {
 		response.sendRedirect("/Elecciones/Admin");
 	}
 
-	private void insertarEleccion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void insertarEleccion(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
 		String nombre = request.getParameter("nombre");
+		Calendar c = Calendar.getInstance();
 		String [] fechaInicioS = request.getParameter("fechainicio").split("-");
+		c.set(Integer.parseInt(fechaInicioS[0]),Integer.parseInt(fechaInicioS[1])-1, Integer.parseInt(fechaInicioS[2]));
+		Timestamp fechainicio = new Timestamp(c.getTimeInMillis());
 		String [] fechaFinS = request.getParameter("fechafin").split("-");
-		Timestamp fechainicio = new Timestamp(Integer.parseInt(fechaInicioS[0])-1900,Integer.parseInt(fechaInicioS[1]),Integer.parseInt(fechaInicioS[2]),0,0,0,0);
-		Timestamp fechafin = new Timestamp(Integer.parseInt(fechaFinS[0])-1900,Integer.parseInt(fechaFinS[1]),Integer.parseInt(fechaFinS[2]),0,0,0,0);
-		String cargo = request.getParameter("cargo");		
+		Calendar x = Calendar.getInstance();
+		x.set(Integer.parseInt(fechaFinS[0]),Integer.parseInt(fechaFinS[1])-1, Integer.parseInt(fechaFinS[2]));
+		String cargo = request.getParameter("cargo");
+		Timestamp fechafin = new Timestamp(x.getTimeInMillis());
 		Eleccion eleccion = new Eleccion(nombre,fechainicio,fechafin,cargo);
 		elecciones.insert(eleccion);
 		response.sendRedirect("/Elecciones/Admin");
