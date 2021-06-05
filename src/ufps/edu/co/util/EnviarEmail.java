@@ -95,7 +95,7 @@ public class EnviarEmail {
         EnviarEmail email=new EnviarEmail(emailUsuarioEmisor, clave);       
         
         String asunto = "Puesto De Votacion Virtual";
-        String cuerpo = "Tu clave de votacion es: "+uuid+"\n"+"Dirigete a http://localhost:8080/Elecciones/Voto/validar?var="+enlace;
+        String cuerpo = "Tu clave de votacion es: "+uuid+"\n"+"Dirigete a http://localhost:8080/Elecciones/Voto?action=validar&var="+enlace;
         
         email.enviarEmail(receptor, asunto, cuerpo);
         System.out.println("Se ha enviado email: "+receptor);
