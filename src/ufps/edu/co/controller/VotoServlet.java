@@ -21,7 +21,7 @@ import ufps.edu.co.model.Voto;
 /**
  * Servlet implementation class VotoServlet
  */
-@WebServlet("/VotoServlet/*")
+@WebServlet("/Voto/*")
 public class VotoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        CandidatoDao canDAO;
@@ -53,6 +53,9 @@ public class VotoServlet extends HttpServlet {
 		case "mostrar":
 			this.showForm(request, response);
 			break;
+		case "validar":
+			this.validar(request, response);
+			break;
 			/*	case "/buscar":
 			this.buscar(request, response);
 			break;	 */
@@ -82,6 +85,20 @@ public class VotoServlet extends HttpServlet {
 			break;
 		}
 		
+	}
+
+	private void validar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String var = request.getParameter("var");
+		Voto voto = new Voto();
+		for (Voto v : votaDAO.list()){
+			if(v.getEnlace().equals(var)){
+				voto = v;
+			}
+		}
+		request.setAttribute("voto", voto);
+		request.setAttribute("votante", voto.getVotante());
+		
+		request.getRequestDispatcher("confirmarDatos.jsp").forward(request, response);
 	}
 
 	private void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -137,6 +154,7 @@ public class VotoServlet extends HttpServlet {
 		votaDAO.update(vot);
 		
 	}
+	
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

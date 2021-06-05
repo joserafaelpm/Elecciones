@@ -75,7 +75,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="tipodocumento" class="form-label">Tipo De Documento
-							</label> <input name="tipodocumento" readonly  value="${votante.tipodocumento}" type="text" id="tdocumentoInput"
+							</label> <input name="tipodocumento" readonly  value="${votante.getTipoDocumento().getDescripcion()}" type="text" id="tdocumentoInput"
 							class="form-control" placeholder="Tipo De Documento">
 					</div>
 					<div class="mb-3">
