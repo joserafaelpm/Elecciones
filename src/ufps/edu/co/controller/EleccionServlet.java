@@ -23,6 +23,7 @@ import ufps.edu.co.dao.EleccionesDao;
 import ufps.edu.co.dao.VotanteDao;
 import ufps.edu.co.model.Candidato;
 import ufps.edu.co.model.Eleccion;
+import ufps.edu.co.model.TipoDocumento;
 import ufps.edu.co.model.Votante;
 
 /**
@@ -65,6 +66,9 @@ public class EleccionServlet extends HttpServlet {
 			case "lista":
 				ListarUsuario(request, response);
 				break;
+			case "updateCandidato":
+				updateCandidato(request, response);
+				break;
 			case "eliminarEleccion":
 				eliminarEleccion(request, response);
 				break;
@@ -95,19 +99,35 @@ public class EleccionServlet extends HttpServlet {
 		}
 	}
 	
-	private void updateEleccion(HttpServletRequest request, HttpServletResponse response) {
+	private void updateCandidato(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		String documento = request.getParameter("documento");
+		Integer numero = Integer.parseInt(request.getParameter("numero"));
+		Eleccion eleccion = elecciones.find(Integer.parseInt(request.getParameter("eleccion")));
 		
+		Candidato c = new Candidato(id,documento,nombre,apellido,eleccion,numero);
+		candidatos.update(c);
 		
-		/*String [] fechaInicioS = request.getParameter("fechainicio").split("-");
+		response.sendRedirect("../Admin");
+	}
+
+	private void updateEleccion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		String nombre = request.getParameter("nombre");
+		Calendar c = Calendar.getInstance();
+		String [] fechaInicioS = request.getParameter("fechainicio").split("-");
 		c.set(Integer.parseInt(fechaInicioS[0]),Integer.parseInt(fechaInicioS[1])-1, Integer.parseInt(fechaInicioS[2]));
 		Timestamp fechainicio = new Timestamp(c.getTimeInMillis());
 		String [] fechaFinS = request.getParameter("fechafin").split("-");
 		Calendar x = Calendar.getInstance();
 		x.set(Integer.parseInt(fechaFinS[0]),Integer.parseInt(fechaFinS[1])-1, Integer.parseInt(fechaFinS[2]));
 		String cargo = request.getParameter("cargo");
-		Timestamp fechafin = new Timestamp(x.getTimeInMillis());*/
-		
-		
+		Timestamp fechafin = new Timestamp(x.getTimeInMillis());
+		Eleccion eleccion = new Eleccion(id,nombre,fechainicio,fechafin,cargo);
+		elecciones.update(eleccion);
+		response.sendRedirect("../Admin");
 	}
 
 	private void editarEleccion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

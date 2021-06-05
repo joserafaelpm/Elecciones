@@ -57,7 +57,7 @@
 	<div class="container mt-5 pt-5 mb-5 w-75 ">
 		<h2 class="pt-5 page-section-heading text-center text-uppercase fs-1 text-Dark mb-0">Editar Candidato</h2> 
 		<form class="justify-content-center mt-5"
-			action="/Elecciones/Admin/updateCandidato" method="POST"
+			action="/Elecciones/Admin/updateCandidato?id=${candidato.id}" method="POST"
 			class="w-100">
 			<fieldset>
 				<div class="mb-3">
@@ -77,7 +77,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="eleccion" class="form-label">Eleccion </label>  <input
-						name="eleccion" disabled value="${candidato.eleccion.id}" type="text" id="eleccionInput"
+						name="eleccion" readonly value="${candidato.eleccion.id}" type="text" id="eleccionInput"
 						class="form-control" placeholder="eleccion">
 					</select>
 				</div>

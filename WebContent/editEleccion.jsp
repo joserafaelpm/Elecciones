@@ -57,7 +57,7 @@
 	<div class="container mt-5 pt-5 mb-5 w-75 ">
 		<h2 class="pt-5 page-section-heading text-center text-uppercase fs-1 text-Dark mb-0">Editar Eleccion</h2> 
 		<form class="justify-content-center"
-									action="/Elecciones/Admin/updateEleccion" method="POST"
+									action="/Elecciones/Admin/updateEleccion?id=${eleccion.id}" method="POST"
 									class="w-50">
 									<fieldset>
 										<div class="mb-3">
@@ -78,7 +78,7 @@
 										</div>
 										<div class="mb-3">
 											<label for="cargo" class="form-label">Cargo </label> <input
-												name="cargo" disabled value="${eleccion.cargo}" type="text" id="cargoInput"
+												name="cargo" value="${eleccion.cargo}" type="text" id="cargoInput"
 												class="form-control" placeholder="Cargo">
 										</div>
 										<button type="submit" class="btn btn-primary">Registrar
