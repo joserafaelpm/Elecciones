@@ -33,7 +33,7 @@ public class EnviarEmail {
         inicializarPropiedades();      
     }
 
-    public void ServicioEmail() {
+    public EnviarEmail() {
     }
        
     private void inicializarPropiedades()
@@ -89,15 +89,13 @@ public class EnviarEmail {
         this.emailUsuarioEmisor = emailUsuarioEmisor;
     }
     
-    public void enviarCorreo(String receptor, String uuid, String enlace){
+    public static void enviarCorreo(String receptor, String uuid, String enlace){
     	String emailUsuarioEmisor="johanleon2021@gmail.com";
         String clave="testmail01";
-        EnviarEmail email=new EnviarEmail(emailUsuarioEmisor, clave);
+        EnviarEmail email=new EnviarEmail(emailUsuarioEmisor, clave);       
         
-        
-        String asunto = "";
-        String cuerpo = "";
-        
+        String asunto = "Puesto De Votacion Virtual";
+        String cuerpo = "Tu clave de votacion es: "+uuid+"\n"+"Dirigete a https//votacion.com/"+enlace;
         
         email.enviarEmail(receptor, asunto, cuerpo);
         System.out.println("Se ha enviado email: "+receptor);

@@ -90,6 +90,7 @@
 
 
 	<!-- Footer-->
+	<!-- Footer-->
 	<footer class="footer text-center">
 		<div class="container">
 			<div class="row">
@@ -117,7 +118,7 @@
 					<h4 class="text-uppercase mb-4">About Freelancer</h4>
 					<p class="lead mb-0">
 						Freelance is a free to use, MIT licensed Bootstrap theme created
-						by <a href="/Elecciones/Admin">Admin</a> .
+						by <a href="/Elecciones/Admin">Admin</a>  .
 					</p>
 				</div>
 			</div>
@@ -129,10 +130,10 @@
 			<small>Copyright &copy; Your Website 2021</small>
 		</div>
 	</div>
+	
 	<!-- Bootstrap core JS-->
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
 </body>
 </html>

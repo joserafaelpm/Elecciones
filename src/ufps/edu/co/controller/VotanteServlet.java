@@ -1,7 +1,9 @@
 package ufps.edu.co.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,11 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ufps.edu.co.dao.EleccionesDao;
+import ufps.edu.co.dao.EstamentoDao;
 import ufps.edu.co.dao.TipoDocumentoDao;
 import ufps.edu.co.dao.VotanteDao;
+import ufps.edu.co.dao.VotoDao;
 import ufps.edu.co.model.Eleccion;
 import ufps.edu.co.model.TipoDocumento;
 import ufps.edu.co.model.Votante;
+import ufps.edu.co.model.Voto;
+import ufps.edu.co.util.EnviarEmail;
 
 /**
  * Servlet implementation class VotanteServlet
@@ -26,6 +32,9 @@ public class VotanteServlet extends HttpServlet {
 	TipoDocumentoDao tipoDocumentoDao;
 	EleccionesDao eleccionesDao; 
 	VotanteDao votanteDao;
+	VotoDao votoDao;
+	EstamentoDao estamentoDao;
+	EnviarEmail email;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,6 +43,8 @@ public class VotanteServlet extends HttpServlet {
         tipoDocumentoDao = new TipoDocumentoDao();
 		eleccionesDao = new EleccionesDao();
 		votanteDao = new VotanteDao();
+		votoDao = new VotoDao();
+		estamentoDao= new EstamentoDao();
         // TODO Auto-generated constructor stub
     }
 
@@ -89,6 +100,20 @@ public class VotanteServlet extends HttpServlet {
 		Eleccion eleccion = eleccionesDao.find(Integer.parseInt(request.getParameter("eleccion")));
 		Votante v = new Votante(nombre,correo,documento,tipo,eleccion);
 		votanteDao.insert(v);
+		
+		String enlace = UUID.randomUUID().toString();
+		String uuid = UUID.randomUUID().toString().split("-")[0];
+		
+		Voto voto = new Voto();
+		voto.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
+		voto.setVotante(v);
+		voto.setEnlace(enlace);
+		voto.setUuid(uuid);
+		try {
+		votoDao.insert(voto);
+		}catch(Exception e){ return; }
+		email.enviarCorreo(v.getEmail(), uuid, enlace);
+		
 		response.sendRedirect("../Index");
 	}
 
