@@ -2,6 +2,8 @@ package ufps.edu.co.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,11 +58,61 @@ public class VotoServlet extends HttpServlet {
 		case "validar":
 			this.validar(request, response);
 			break;
-			/*	case "/buscar":
+		case "votar":
+			votar(request, response);
+			break;
+				/*	case "/buscar":
 			this.buscar(request, response);
 			break;	 */
 		default:
 			break;
+		}
+	}
+
+	private void votar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String var = request.getParameter("var");
+		Voto voto = new Voto();
+		for (Voto v : votaDAO.list()){
+			if(v.getEnlace().equals(var)){
+				voto = v;
+			}
+		}
+		if(voto.getEstamento()==null){
+			response.sendRedirect("../Voto?action=validar&var="+var);
+		}else {
+		List<Candidato> candidatos = new LinkedList();
+		for(Candidato c: canDAO.list()){
+			if(c.getEleccion().equals(voto.getEstamento().getEleccion())){
+				candidatos.add(c);
+			}
+		}
+		request.setAttribute("candidatos", candidatos);
+		request.setAttribute("voto", voto);
+		request.getRequestDispatcher("Votar.jsp").forward(request, response);
+		}
+	}
+
+	private void check(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		String var = request.getParameter("var");
+		Voto voto = new Voto();
+		for (Voto v : votaDAO.list()){
+			if(v.getEnlace().equals(var)){
+				voto = v;
+			}
+		}
+		Estamento estamento = estaDAO.find(Integer.parseInt(request.getParameter("estamento")));
+		voto.setEstamento(estamento);
+		votaDAO.update(voto);
+		request.setAttribute("voto", voto);
+		String documento = request.getParameter("documento");
+		String clave = request.getParameter("clave");
+		if(!voto.getVotante().getDocumento().equals(documento)){
+			response.sendRedirect("../Voto?action=validar&var="+var);
+		} else if(!voto.getUuid().equals(clave)){
+			response.sendRedirect("../Voto?action=validar&var="+var);
+		}else {
+			response.sendRedirect("../Voto?action=votar&var="+var);
 		}
 	}
 
@@ -81,6 +133,9 @@ public class VotoServlet extends HttpServlet {
 		case "actualizar":
 			this.actualizar(request, response);
 			break;
+		case "check":
+			this.check(request, response);
+			break;
 		default:
 			break;
 		}
@@ -95,6 +150,7 @@ public class VotoServlet extends HttpServlet {
 				voto = v;
 			}
 		}
+		request.setAttribute("estamentos", estaDAO.list());
 		request.setAttribute("voto", voto);
 		request.setAttribute("votante", voto.getVotante());
 		

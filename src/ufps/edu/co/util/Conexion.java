@@ -40,7 +40,6 @@ public class Conexion <T> {
 		return em.createQuery("from " + c.getSimpleName().toLowerCase(), c).getResultList();
 	}
 	
-	
 	public void insert(T obj){
 		try {
 			em.getTransaction().begin();

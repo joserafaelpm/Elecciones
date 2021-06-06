@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
@@ -43,7 +43,8 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="/Elecciones/Index">Index</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded"
+						href="/Elecciones/Index">Index</a></li>
 				</ul>
 			</div>
 		</div>
@@ -51,7 +52,7 @@
 	<!-- Cuerpo -->
 	<header class="masthead bg-light text-black text-center">
 		<div class="container d-flex align-items-center flex-column">
-			<h1 class="masthead-heading text-uppercase mb-0">Confirmar Datos</h1>
+			<h1 class="masthead-heading text-uppercase mb-0">${voto.getEstamento().getEleccion().getNombre()}</h1>
 			<!-- Icon Divider-->
 			<div class="divider-custom">
 				<div class="divider-custom-line"></div>
@@ -60,60 +61,34 @@
 				</div>
 				<div class="divider-custom-line"></div>
 			</div>
-		<form action="/Elecciones/Voto/?action=check&var=${voto.enlace}" class="w-50"  method="POST">
-				<fieldset>
-					<div class="mb-3">
-						<label for="estamento" class="form-label">Seleccionar Estamento
-							</label> <select id="estamento" name="estamento" class="form-select">
-							<c:forEach var="estamento" items="${estamentos}">
-								<option value="${estamento.id}">${estamento.descripcion}</option>
-							</c:forEach>
-						</select>
+		<div class="row row-cols-2 justify-content-center">
+			<c:forEach var="candidato" items="${candidatos}">
+					<div class="col mb-5 text-center">
+						<h3>${candidato.nombre} Numero: ${candidato.numero}</h3>
+						<div class="portfolio-item mx-auto" data-bs-toggle="modal"
+							data-bs-target="#portfolioModal${candidato.id}">
+							<div
+								class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+								<div
+									class="portfolio-item-caption-content text-center text-white">
+									<i class="fas fa-plus fa-3x"></i>
+								</div>
+							</div>
+							<img class="img-fluid"
+								src="<c:url value ="/img/Elecciones.jpg"/>" alt="..." />
+						</div>
 					</div>
-					<div class="mb-3">
-						<label for="nombre" class="form-label">Nombre
-						</label> <input name="nombre" readonly value="${votante.nombre}" type="text" id="nombreText"
-							class="form-control" placeholder="Fulanito Detal">
-					</div>
-					<div class="mb-3">
-						<label for="email" class="form-label">Correo
-							</label> <input name="email" readonly value="${votante.email}" type="email" id="emailInput"
-							class="form-control" placeholder="example@email.com">
-					</div>
-					<div class="mb-3">
-						<label for="tipodocumento" class="form-label">Tipo De Documento
-							</label> <input name="tipodocumento" readonly  value="${votante.getTipoDocumento().getDescripcion()}" type="text" id="tdocumentoInput"
-							class="form-control" placeholder="Tipo De Documento">
-					</div>
-					<div class="mb-3">
-						<label for="eleccion" class="form-label">Eleccion
-							</label> 
-							<input name="eleccion" readonly  value="${votante.eleccion.id}" type="text" id="elecconInput"
-							class="form-control" placeholder="Eleccion">
-					</div>
-					<div class="mb-3">
-						<label for="document" class="form-label">Documento
-							</label> <input name="documento" required value="${votante.documento}" type="text" id="documentoInput"
-							class="form-control" placeholder="Identificacion">
-					</div>
-					<div class="mb-3">
-						<label for="clave" class="form-label">Password
-							</label> <input name="clave" required type="text" id="claveInput"
-							class="form-control" placeholder="Password">
-					</div>
-					<button type="submit" class="btn btn-primary mb-5">
-					Confirmar Datos
-					</button>
-				</fieldset>
-			</form>
-	</div>
-	
+			</c:forEach>
+</div>
+		</div>
+
 	</header>
 	<!-- Footer -->
 	<div class="footerContainer"></div>
-	
+
 	<!-- Bootstrap core JS-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
