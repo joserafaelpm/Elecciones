@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +28,18 @@
 	rel="stylesheet" type="text/css" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link rel="stylesheet" href="<c:url value ="/CSS/Estilos.css"/>" />
+<script type="text/javascript">
+	function continuar() {
+		var response = grecaptcha.getResponse();
+		if (response.length != 0)
+			windows.open("");
+		else
+			document.getElementById('status').innerHTML = "Acepta primero.";
+		windows.open("");
+	}
+</script>
 </head>
+
 <body>
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg bg-danger text-uppercase fixed-top"
@@ -61,25 +74,46 @@
 				</div>
 				<div class="divider-custom-line"></div>
 			</div>
-		<div class="row row-cols-2 justify-content-center">
-			<c:forEach var="candidato" items="${candidatos}">
-					<div class="col mb-5 text-center">
-						<h3>${candidato.nombre} Numero: ${candidato.numero}</h3>
-						<div class="portfolio-item mx-auto" data-bs-toggle="modal"
-							data-bs-target="#portfolioModal${candidato.id}">
-							<div
-								class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-								<div
-									class="portfolio-item-caption-content text-center text-white">
-									<i class="fas fa-plus fa-3x"></i>
+
+
+			<form action="Voto/votar/" method="POST">
+				<input type="hidden" name="id" value="${voto.id}" />
+				<div
+					class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 justify-content-center">
+					<c:forEach var="candidato" items="${candidatos}">
+						<div class="form-check">
+							<input class="form-check-input" value="${candidato.id}"
+								type="radio" name="candidatoId" id="candidatoId"> <label
+								class="form-check-label" for="flexRadioDefault1">
+								<h3>${candidato.nombre} Numero: ${candidato.numero}</h3>
+							</label>
+
+							<div class="col mb-5 text-center">
+
+								<div class="portfolio-item mx-auto" data-bs-toggle="modal"
+									data-bs-target="#portfolioModal${candidato.id}">
+									<div
+										class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+										<div
+											class="portfolio-item-caption-content text-center text-white">
+											<i class="fas fa-plus fa-3x"></i>
+										</div>
+									</div>
+									<a href="hola"> <img class="img-fluid"
+										src="<c:url value ="/img/Elecciones.jpg"/>" alt="..."></img>
+									</a>
 								</div>
 							</div>
-							<img class="img-fluid"
-								src="<c:url value ="/img/Elecciones.jpg"/>" alt="..." />
+
 						</div>
-					</div>
-			</c:forEach>
-</div>
+					</c:forEach>
+				</div>
+				<div class="g-recaptcha"
+					data-sitekey="6LdNURgbAAAAAPErZBouNZj-ijZpwojxvBHS8Iym"></div>
+				<br />
+				<div id="status"></div>
+				<button type="submit" onclick="continuar()" class="btn btn-primary">Submit</button>
+			</form>
 		</div>
 
 	</header>

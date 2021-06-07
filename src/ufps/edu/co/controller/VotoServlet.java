@@ -1,10 +1,12 @@
 package ufps.edu.co.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,7 @@ import ufps.edu.co.model.Candidato;
 import ufps.edu.co.model.Estamento;
 import ufps.edu.co.model.Votante;
 import ufps.edu.co.model.Voto;
+import ufps.edu.co.util.ValidarCaptcha;
 
 /**
  * Servlet implementation class VotoServlet
@@ -66,6 +69,21 @@ public class VotoServlet extends HttpServlet {
 			break;	 */
 		default:
 			break;
+		}
+	}
+
+	private void efectuarVoto(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+        System.out.println(gRecaptchaResponse);
+        
+        boolean verificado = ValidarCaptcha.verificar(gRecaptchaResponse);
+		
+		Voto voto = votaDAO.find(Integer.parseInt(request.getParameter("id")));
+		Candidato candidato = canDAO.find(Integer.parseInt(request.getParameter("candidatoId")));
+		if(verificado) {
+        System.out.println(candidato.toString());
+		}else {
+			response.sendRedirect(request.getContextPath()+"/Voto?action=votar&var="+voto.getEnlace());
 		}
 	}
 
@@ -121,7 +139,16 @@ public class VotoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String action = request.getParameter("action");
+		String[] opt =  request.getRequestURI().split("/");
+		String action =  request.getContextPath();
+		if (opt.length>3){
+		 action = opt[3];
+		}	
+		if(action.equals("votar")){
+			efectuarVoto(request, response);
+			return;
+		}
+		action = request.getParameter("action");
 		System.out.println(action);
 		switch (action) { 
 		case "buscar":
