@@ -85,7 +85,8 @@ public class VotoServlet extends HttpServlet {
 			voto.setCandidato(candidato);
 			voto.setFechaVoto(new Timestamp(System.currentTimeMillis()));
 			voto.setEnlace("");
-			response.sendRedirect(request.getContextPath()+"/votacionExitosa.jsp");
+			request.setAttribute("candidato", candidato);
+			response.sendRedirect("../../votacionExitosa.jsp");
 		}else {
 			response.sendRedirect(request.getContextPath()+"/Voto?action=votar&var="+voto.getEnlace());
 		}
@@ -181,14 +182,14 @@ public class VotoServlet extends HttpServlet {
 				voto = v;
 			}
 		}
-		if(voto.getEstamento().getEleccion().getFechaFin().after(new Timestamp(System.currentTimeMillis()))){
-			voto.setEnlace("");
-			response.sendRedirect("index.jsp");
-		}
 		request.setAttribute("estamentos", estaDAO.list());
 		request.setAttribute("voto", voto);
 		request.setAttribute("votante", voto.getVotante());
-		
+		if(voto.getVotante().getEleccion().getFechaFin().before(new Timestamp(System.currentTimeMillis()))){
+			voto.setEnlace("");
+			response.sendRedirect("Index");
+			return;
+		}
 		request.getRequestDispatcher("confirmarDatos.jsp").forward(request, response);
 	}
 
