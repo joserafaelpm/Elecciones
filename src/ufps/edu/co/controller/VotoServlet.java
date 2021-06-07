@@ -79,9 +79,13 @@ public class VotoServlet extends HttpServlet {
         boolean verificado = ValidarCaptcha.verificar(gRecaptchaResponse);
 		
 		Voto voto = votaDAO.find(Integer.parseInt(request.getParameter("id")));
-		Candidato candidato = canDAO.find(Integer.parseInt(request.getParameter("candidatoId")));
-		if(verificado) {
-        System.out.println(candidato.toString());
+		String candidatoId = request.getParameter("candidatoId");	
+		if(verificado && !candidatoId.equals(null)) {
+			Candidato candidato = canDAO.find(Integer.parseInt(candidatoId));
+			voto.setCandidato(candidato);
+			voto.setFechaVoto(new Timestamp(System.currentTimeMillis()));
+			voto.setEnlace("");
+			response.sendRedirect(request.getContextPath()+"/votacionExitosa.jsp");
 		}else {
 			response.sendRedirect(request.getContextPath()+"/Voto?action=votar&var="+voto.getEnlace());
 		}

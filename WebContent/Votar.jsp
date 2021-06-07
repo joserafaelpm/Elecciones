@@ -34,7 +34,7 @@
 		if (response.length != 0)
 			windows.open("");
 		else
-			document.getElementById('status').innerHTML = "Acepta primero.";
+			document.getElementById('status').innerHTML = "Acepta el Captcha primero.";
 		windows.open("");
 	}
 </script>
@@ -87,7 +87,6 @@
 								class="form-check-label" for="flexRadioDefault1">
 								<h3>${candidato.nombre} Numero: ${candidato.numero}</h3>
 							</label>
-
 							<div class="col mb-5 text-center">
 
 								<div class="portfolio-item mx-auto" data-bs-toggle="modal"
@@ -112,7 +111,7 @@
 					data-sitekey="6LdNURgbAAAAAPErZBouNZj-ijZpwojxvBHS8Iym"></div>
 				<br />
 				<div id="status"></div>
-				<button type="submit" onclick="continuar()" class="btn btn-primary">Submit</button>
+				<button type="submit" onclick="continuar()" class="btn btn-primary">Votar</button>
 			</form>
 		</div>
 
