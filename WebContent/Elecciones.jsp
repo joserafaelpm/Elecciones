@@ -45,9 +45,6 @@
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded" href="/Elecciones/Index">Index</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded"
-						href="/Elecciones/RegistrarVotante">Registro</a></li>
 				</ul>
 			</div>
 		</div>
@@ -269,12 +266,12 @@
 															<div class="mb-3">
 																<label for="apellido" class="form-label">Apellido </label> <input
 																	name="apellido" type="text" id="apellidoInput"
-																	class="form-control" placeholder="Cargo">
+																	class="form-control" placeholder="Apellido">
 															</div>
 															<div class="mb-3">
 																<label for="documento" class="form-label">Documento </label> <input
 																	name="documento" type="text" id="documentoInput"
-																	class="form-control" placeholder="Cargo">
+																	class="form-control" placeholder="Documento">
 															</div>
 															<div class="mb-3">
 																<label for="eleccion" class="form-label">Eleccion </label> <select

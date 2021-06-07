@@ -69,8 +69,7 @@ src="<c:url value ="/img/UFPS_Logo.png"/>" alt="..." />
 				<div class="divider-custom-line"></div>
 			</div>
 			<!-- Masthead Subheading-->
-			<p class="masthead-subheading font-weight-light mb-0">Graphic
-				Artist - Web Designer - Illustrator</p>
+			<p class="masthead-subheading font-weight-light mb-0">Interfaz de Votaciones UFPS</p>
 		</div>
 	</header>
 	
@@ -78,7 +77,7 @@ src="<c:url value ="/img/UFPS_Logo.png"/>" alt="..." />
 		<div class="container">
 			<!-- Portfolio Section Heading-->
 			<h2
-				class="page-section-heading text-center text-uppercase text-secondary mb-0">Elecciones</h2>
+				class="page-section-heading text-center text-uppercase text-secondary mb-0">Elecciones Actuales</h2>
 			<!-- Icon Divider-->
 			<div class="divider-custom">
 				<div class="divider-custom-line"></div>
@@ -92,6 +91,7 @@ src="<c:url value ="/img/UFPS_Logo.png"/>" alt="..." />
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 justify-content-center">
 				<!-- Portfolio Item 1-->
 				<c:forEach var="eleccion" items="${elecciones}">
+				<c:if test="${eleccion.getFechaFin().after(fechaActual)}">
 				<div class="col mb-5">	
 					<h3>${eleccion.nombre}</h3>
 					<div class="portfolio-item mx-auto" data-bs-toggle="modal"
@@ -106,6 +106,7 @@ src="<c:url value ="/img/UFPS_Logo.png"/>" alt="..." />
 						<img class="img-fluid" src="<c:url value ="/img/Elecciones.jpg"/>" alt="..." />
 					</div>	
 				</div>
+				</c:if>
 				</c:forEach>
 			</div>
 		</div>

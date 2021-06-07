@@ -2,6 +2,7 @@ package ufps.edu.co.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -79,6 +80,7 @@ public class ControllerIndex extends HttpServlet {
 		List<Eleccion> elecciones = this.elecciones.list();
 
 		request.setAttribute("elecciones", elecciones);
+		request.setAttribute("fechaActual", new Timestamp(System.currentTimeMillis()));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);

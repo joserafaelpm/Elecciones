@@ -97,7 +97,9 @@
 						<label for="eleccion" class="form-label">Eleccion
 							</label> <select id="eleccion" name="eleccion" class="form-select">
 							<c:forEach var="eleccion" items="${elecciones}">
+							<c:if test="${eleccion.getFechaFin().after(fechaActual)}">
 								<option value="${eleccion.id}">${eleccion.nombre}</option>
+								</c:if>
 							</c:forEach>
 						</select>
 					</div>
@@ -121,38 +123,34 @@
 	</header>
 	
 
-
-
-	<!-- Footer-->
 	<!-- Footer-->
 	<footer class="footer text-center">
 		<div class="container">
 			<div class="row">
 				<!-- Footer Location-->
 				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="text-uppercase mb-4">Location</h4>
+					<h4 class="text-uppercase mb-4">Equipo</h4>
 					<p class="lead mb-0">
-						2215 John Daniel Drive <br /> Clark, MO 65243
+						Johan Ibarra<br /> Rafael Peña
 					</p>
 				</div>
 				<!-- Footer Social Icons-->
 				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="text-uppercase mb-4">Around the Web</h4>
-					<a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-facebook-f"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-twitter"></i></a> <a
-						class="btn btn-outline-light btn-social mx-1" href="#!"><i
-						class="fab fa-fw fa-linkedin-in"></i></a> <a
+					<h4 class="text-uppercase mb-4">Repositorios</h4>
+					<a class="btn btn-outline-light btn-social mx-1" title="Repositorio" href="https://github.com/joserafaelpm/Elecciones"><i
+						class="fab fa-fw fa-github"></i></a> <a
+						class="btn btn-outline-light btn-social mx-1" title="Johan" href="https://github.com/JohanLeonardoIbarra"><i
+						class="fab fa-fw fa-github"></i></a> <a
+						class="btn btn-outline-light btn-social mx-1" title="Rafael" href="https://github.com/joserafaelpm"><i
+						class="fab fa-fw fa-github"></i></a> <a
 						class="btn btn-outline-light btn-social mx-1" href="#!"><i
 						class="fab fa-fw fa-dribbble"></i></a>
 				</div>
 				<!-- Footer About Text-->
 				<div class="col-lg-4">
-					<h4 class="text-uppercase mb-4">About Freelancer</h4>
+					<h4 class="text-uppercase mb-4">Ventana de Administrador</h4>
 					<p class="lead mb-0">
-						Freelance is a free to use, MIT licensed Bootstrap theme created
-						by <a href="/Elecciones/Admin">Admin</a>  .
+						Para acceder a la pestaña de administrador presione aquí <a href="/Elecciones/Admin">Admin</a>  .
 					</p>
 				</div>
 			</div>

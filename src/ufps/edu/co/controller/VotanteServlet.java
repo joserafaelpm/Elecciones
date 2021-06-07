@@ -60,9 +60,6 @@ public class VotanteServlet extends HttpServlet {
 		}		
 		try {
 			switch (action) {
-			case "new":
-				showNewForm(request, response);
-				break;
 			case "insert":
 				insertarUsuario(request, response);
 				break;
@@ -123,6 +120,7 @@ public class VotanteServlet extends HttpServlet {
 		
 		request.setAttribute("elecciones", elecciones);
 		request.setAttribute("tipoDocumento", tipoDocumento);
+		request.setAttribute("fechaActual", new Timestamp(System.currentTimeMillis()));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/RegistrarVotante.jsp");
 		dispatcher.forward(request, response);
@@ -165,10 +163,4 @@ public class VotanteServlet extends HttpServlet {
 		votanteDao.delete(vtaux);
 		response.sendRedirect("../Admin/lista?id="+vtaux.getEleccion().getId());
 	}
-
-	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("RegistrarVotante.jsp");
-		dispatcher.forward(request, response);
-	}
-
 }

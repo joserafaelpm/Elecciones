@@ -62,7 +62,7 @@
 						href="/Elecciones/Index">Index</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
-						href="/Elecciones/RegistrarVotante">Registro</a></li>
+						href="/Elecciones/Admin">Volver</a></li>
 				</ul>
 			</div>
 		</div>
@@ -95,8 +95,6 @@
 	<div class="form-group row">
 		<div class="col-sm-10">
 			<button type="submit" class="btn btn-primary">Registrar</button>
-			<a href="${pageContext.request.contextPath}/index.jsp"
-				class="btn btn-primary">Volver</a>
 		</div>
 	</div>
 	

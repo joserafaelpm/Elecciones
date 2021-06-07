@@ -181,6 +181,10 @@ public class VotoServlet extends HttpServlet {
 				voto = v;
 			}
 		}
+		if(voto.getEstamento().getEleccion().getFechaFin().after(new Timestamp(System.currentTimeMillis()))){
+			voto.setEnlace("");
+			response.sendRedirect("index.jsp");
+		}
 		request.setAttribute("estamentos", estaDAO.list());
 		request.setAttribute("voto", voto);
 		request.setAttribute("votante", voto.getVotante());

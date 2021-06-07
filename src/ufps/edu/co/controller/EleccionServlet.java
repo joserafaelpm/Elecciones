@@ -2,11 +2,8 @@ package ufps.edu.co.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,7 +20,6 @@ import ufps.edu.co.dao.EleccionesDao;
 import ufps.edu.co.dao.VotanteDao;
 import ufps.edu.co.model.Candidato;
 import ufps.edu.co.model.Eleccion;
-import ufps.edu.co.model.TipoDocumento;
 import ufps.edu.co.model.Votante;
 
 /**
