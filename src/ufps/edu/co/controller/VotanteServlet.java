@@ -106,6 +106,7 @@ public class VotanteServlet extends HttpServlet {
 		voto.setVotante(v);
 		voto.setEnlace(enlace);
 		voto.setUuid(uuid);
+		voto.setEstamento(estamentoDao.find(Integer.parseInt(request.getParameter("estamento"))));
 		try {
 		votoDao.insert(voto);
 		}catch(Exception e){ return; }
@@ -120,6 +121,7 @@ public class VotanteServlet extends HttpServlet {
 		
 		request.setAttribute("elecciones", elecciones);
 		request.setAttribute("tipoDocumento", tipoDocumento);
+		request.setAttribute("estamentos", estamentoDao.list());
 		request.setAttribute("fechaActual", new Timestamp(System.currentTimeMillis()));
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/RegistrarVotante.jsp");

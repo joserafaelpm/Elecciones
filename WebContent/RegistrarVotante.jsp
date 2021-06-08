@@ -47,7 +47,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded" href="/Elecciones/Index">Index</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded" href="/Elecciones/Admin">Volver</a></li>
 				</ul>
 			</div>
 		</div>
@@ -100,6 +100,14 @@
 							<c:if test="${eleccion.getFechaFin().after(fechaActual)}">
 								<option value="${eleccion.id}">${eleccion.nombre}</option>
 								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="estamento" class="form-label">Seleccionar Estamento
+							</label> <select id="estamento" name="estamento" class="form-select">
+							<c:forEach var="estamento" items="${estamentos}">
+								<option value="${estamento.id}">${estamento.descripcion}</option>
 							</c:forEach>
 						</select>
 					</div>

@@ -64,10 +64,9 @@
 				<fieldset>
 					<div class="mb-3">
 						<label for="estamento" class="form-label">Seleccionar Estamento
-							</label> <select id="estamento" name="estamento" class="form-select">
-							<c:forEach var="estamento" items="${estamentos}">
-								<option value="${estamento.id}">${estamento.descripcion}</option>
-							</c:forEach>
+							</label>
+							<input name="estamento" readonly value="${estamento.descripcion}" type="text" id="nombreText"
+							class="form-control" placeholder="Estamento">
 						</select>
 					</div>
 					<div class="mb-3">

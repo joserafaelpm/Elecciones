@@ -124,8 +124,6 @@ public class VotoServlet extends HttpServlet {
 				voto = v;
 			}
 		}
-		Estamento estamento = estaDAO.find(Integer.parseInt(request.getParameter("estamento")));
-		voto.setEstamento(estamento);
 		votaDAO.update(voto);
 		request.setAttribute("voto", voto);
 		String documento = request.getParameter("documento");
@@ -182,7 +180,7 @@ public class VotoServlet extends HttpServlet {
 				voto = v;
 			}
 		}
-		request.setAttribute("estamentos", estaDAO.list());
+		request.setAttribute("estamento", voto.getEstamento());
 		request.setAttribute("voto", voto);
 		request.setAttribute("votante", voto.getVotante());
 		if(voto.getVotante().getEleccion().getFechaFin().before(new Timestamp(System.currentTimeMillis()))){
